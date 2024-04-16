@@ -10,12 +10,14 @@ define('RUTA_APP', dirname(dirname(__FILE__)));
 // define('RUTA_URL', "/seguimiento");
 define('RUTA_URL', "/seguimiento");
 define('NOMBRE_SITIO', 'seguimiento');
-define('RUTA_CPIFP', "http://192.168.1.7/cpifp");
 
-define('RUTA_SEGUIMIENTO', "http://192.168.1.7/seguimiento/profeSegui");
-define('RUTA_REPARTO', "http://192.168.1.7/seguimiento/jefeDep");
-define('RUTA_CURSO', "http://192.168.1.7/seguimiento/direccion");
-define('RUTA_LOGOUT', "http://192.168.1.7/cpifp/login/logout");
+//************* Las siguientes rutas absoluras, estudiar si pueden ser relativas de RUTA_URL, casi seguro que si *************/
+define('RUTA_CPIFP', "http://192.168.1.5/cpifp");
+
+define('RUTA_SEGUIMIENTO', "http://192.168.1.5/seguimiento/profeSegui");
+define('RUTA_REPARTO', "http://192.168.1.5/seguimiento/jefeDep");
+define('RUTA_CURSO', "http://192.168.1.5/seguimiento/direccion");
+define('RUTA_LOGOUT', "http://192.168.1.5/cpifp/login/logout");
 
 // Ruta host
 define('DB_HOST', 'localhost');
