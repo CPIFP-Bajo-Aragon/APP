@@ -1,0 +1,137 @@
+body{
+    background-color: #F5F5F5;
+}
+
+/*MENU LATERAL */
+
+
+
+
+  
+
+
+
+
+@media (max-width: 600px) {
+    #logo{width: 100px;}
+    #fotoMenu{padding: 10px;padding-bottom: 0;}
+}
+
+.caja, p{
+    cursor:pointer;
+}
+
+p[id^="p"]{
+    border: solid; 
+    color: #023EF9; 
+    font-weight:bold; 
+    height: 100%; 
+    width: 200px;
+    cursor:pointer;
+}
+
+div[id^="color"]{
+    width: 200px;
+    height: 100%;
+}
+
+td[id^="m"] {
+    font-size: 25px;
+    letter-spacing: 3px;
+    font-family: 'Anton', sans-serif;
+    font-family: 'Doppio One', sans-serif;
+    border: #023EF9 solid; 
+    color: #000000;  
+    height: 75px; 
+    width: 100%;
+    cursor:pointer;
+    text-align: center;
+}
+td[id^="m"]:hover {
+   background-color: #FFBF1C;
+}
+
+/* ul[id^="m"]{
+    text-decoration: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+} */
+
+
+
+/* li[id^="m"], li[id^="s"]{
+    list-style: none;
+    text-decoration: none;
+    font-size: 25px;
+    letter-spacing: 3px;
+    font-family: 'Anton', sans-serif;
+    font-family: 'Doppio One', sans-serif; 
+    border-bottom: #023EF9 solid 1px;
+    color: #000000;  
+    cursor:pointer;
+   
+} */
+
+li[id^="s"]{
+    margin-left: 2%;
+    margin-right: 2%;
+    background-color: #E6E6E6;
+}
+
+/* li:hover[id^="m"], li:hover[id^="s"]{
+    background-color: #FFBF1C;
+    color: #000000;
+ } */
+
+
+DIV[id^="color"] {
+    height: 100%; 
+    width: 200px;
+}
+
+.alto400 {
+    height: 400px;
+}
+a:link, a:hover, a:visited, a:active {
+    text-decoration:none;
+    color: #000000; 
+}
+.nav-link:focus, .nav-link:hover {
+    color: #000000;
+}
+
+sup{
+    color: #023EF9;
+    font-weight: bold;
+    font-size: small;
+}
+
+
+
+
+/* modal ver */
+.modalVer{
+            
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding: 100px 100px 0px 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+}
+
+a{
+    color:black;
+    text-decoration: none;
+}
+
+
+
+
+
