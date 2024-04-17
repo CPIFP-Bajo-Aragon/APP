@@ -34,7 +34,7 @@ define('DB_PASSWORD', 'root');
 define('DB_NOMBRE', 'cpifp_bajoaragon');
 //define('DB_PASSWORD', 'Admin1234');
 
-define('RUTA_Icon', RUTA_URL . '/public/img/icons/');
+define('RUTA_Icon', RUTA_URL . '/public/img/icons');
 
 
 
