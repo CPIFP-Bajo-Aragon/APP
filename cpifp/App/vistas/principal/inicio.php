@@ -74,7 +74,7 @@
             <?php if($datos['accesos']->seguimiento): ?>
                 <div class="col-12 col-md-3 col-sm-4 pt-5">    
                     <a style="text-decoration:none; color:black;" href="../seguimiento/profeSegui" >
-                    <button type="button" class="boton text-white shadow-lg" style="height:90px">Seguimiento de la programacion</button></a>
+                    <button type="button" class="boton text-white shadow-lg" style="height:90px">Seguimiento de la programación</button></a>
                 </div>
             <?php endif ?>
 
