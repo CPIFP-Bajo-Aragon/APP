@@ -65,7 +65,7 @@
                     </li>
                 </ul>
 
-                <span class="navbar-nav fs-2 fw-bold mx-auto" style="color: #003d80">Orientación</span>
+                <span class="navbar-nav fs-2 fw-bold mx-auto" style="color: #003d80">IOPE</span>
 
                 <ul class="navbar-nav ms-auto me-4 mb-2 mb-md-0">
                     <li class="navbar-text">

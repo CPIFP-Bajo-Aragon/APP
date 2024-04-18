@@ -88,7 +88,7 @@
             <?php if($datos['accesos']->orientacion): ?>
                 <div class="col-12 col-md-3 col-sm-4 pt-5">    
                     <a style="text-decoration:none; color:black;" href="../orientacion" >
-                    <button type="button" class="boton text-white shadow-lg" style="height:90px">Orientación</button></a>
+                    <button type="button" class="boton text-white shadow-lg" style="height:90px">IOPE</button></a>
                 </div>
             <?php endif ?>
         </div>
