@@ -22,6 +22,7 @@ class Calidad extends Controlador{
 
     public function index(){
 
+        exit;
         $this->datos['modulos'] = $this->calidadModelo->obtener_modulos();
         $this->datos['profes'] = $this->calidadModelo->obtener_profes();
         $this->vista('calidad/inicio', $this->datos);
