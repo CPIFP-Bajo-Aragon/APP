@@ -347,7 +347,7 @@ public function borrar_segui_tema($id_modulo,$tema,$fecha){
 
 
 public function temas_del_modulo($id_modulo){
-   $this->db->query("SELECT * FROM segui_tema where id_modulo=:id_modulo");
+   $this->db->query("SELECT * FROM segui_tema where id_modulo=:id_modulo ORDER BY tema");
    $this->db->bind(':id_modulo',$id_modulo);
    return $this->db->registros();
 }
