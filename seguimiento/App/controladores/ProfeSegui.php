@@ -430,19 +430,20 @@ class ProfeSegui extends Controlador{
 
     public function editar_tema(){
 
-        $this->datos['rolesPermitidos'] = [10];         
+        /*$this->datos['rolesPermitidos'] = [10];         
         if (!tienePrivilegios($this->datos['usuarioSesion']->id_rol, $this->datos['rolesPermitidos'])) {
             redireccionar('/usuarios');
-        }
+        }*/
 
         if($_SERVER['REQUEST_METHOD'] =='POST'){
             $tema = [
                 'id_modulo'=> trim($_POST['id_modulo']),
-                'tema' => trim($_POST['id_tema']),
+                'id_tema' => trim($_POST['id_tema']),
+                'tema' => trim($_POST['tema']),
                 'horas_tema' => trim($_POST['horas_tema']),
                 'descripcion'=> trim($_POST['descripcion'])
             ];
-
+            
             if($this->profeModelo->editar_tema($tema)){
                 redireccionar('/profeSegui/datos_modulo/'.$_POST['id_modulo']);
             }else{

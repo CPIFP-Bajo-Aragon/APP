@@ -100,7 +100,7 @@
    
 
 
-<div class="col-7">
+<div class="col-12">
 
   <table id="tabla" class="table">
 
@@ -112,9 +112,9 @@
         <th>Nº TEMA</th>
         <th>NOMBRE</th>
         <th>HRS PREVISTAS</th>
-        <?php if (tienePrivilegios($datos['usuarioSesion']->id_rol,[10])):?>
+        <?php //if (tienePrivilegios($datos['usuarioSesion']->id_rol,[10])):?>
             <th>OPCIONES</th>
-        <?php endif ?>
+        <?php //endif ?>
     </tr>
 </thead>
 
@@ -131,7 +131,7 @@
         <td><?php echo $tema->descripcion?></td>
         <td><?php echo $tema->total_horas?></td>
 
-    <?php if (tienePrivilegios($datos['usuarioSesion']->id_rol,[10])):?>
+    <?php //if (tienePrivilegios($datos['usuarioSesion']->id_rol,[10])):?>
 
         <td>
 
@@ -158,15 +158,25 @@
 
                         <form action="<?php echo RUTA_URL?>/profeSegui/editar_tema/"<?php echo $tema->id_tema?> method="post">
                             <div class="row mt-3 mb-4">
-                                <div class="col-8">
+                            <div class="col-3">
                                     <div class="input-group">
-                                        <label for="descripcion" class="input-group-text">Nombre</label>
-                                        <input type="text" class="form-control form-control-md" name="descripcion" value="<?php echo $tema->descripcion?>">
+                                        <label for="descripcion" class="input-group-text">Tema</label>
+                                        <input type="text" class="form-control form-control-md" name="tema" value="<?php echo $tema->tema?>" <?php echo ($tema->tema==0)? "disabled":""; ?> >
+                                       
+                                        
+
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="input-group">
-                                        <label for="horas" class="input-group-text">Hrs previstas</label>
+                                        <label for="descripcion" class="input-group-text">Nombre</label>
+                                        <input type="text" class="form-control form-control-md" name="descripcion" value="<?php echo $tema->descripcion?>" <?php echo ($tema->tema==0)? "disabled":""; ?>>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <label for="horas" class="input-group-text">Horas</label>
                                         <input type="text" class="form-control form-control-md" id="horas_tema" name="horas_tema" value="<?php echo $tema->total_horas?>" required >
                                     </div>
                                 </div>
@@ -228,7 +238,7 @@
 
 
         </td>
-        <?php endif ?>
+        <?php //endif ?>
     </tr>
     <?php } endforeach ?>
 </tbody>

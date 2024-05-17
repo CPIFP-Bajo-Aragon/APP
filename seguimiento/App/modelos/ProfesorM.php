@@ -393,10 +393,11 @@ public function nuevo_tema($nuevo){
 
    public function editar_tema($tema){
 
-      $this->db->query("UPDATE segui_tema SET descripcion=:descripcion,total_horas=:total_horas 
+      $this->db->query("UPDATE segui_tema SET tema=:tema, descripcion=:descripcion,total_horas=:total_horas 
                                             where id_modulo=:id_modulo and id_tema=:id_tema");
+      $this->db->bind(":tema",$tema['tema']);
       $this->db->bind(":id_modulo",$tema['id_modulo']);
-      $this->db->bind(":id_tema", $tema['tema']);
+      $this->db->bind(":id_tema", $tema['id_tema']);
       $this->db->bind(":descripcion",$tema['descripcion']);
       $this->db->bind(":total_horas",$tema['horas_tema']);
   
