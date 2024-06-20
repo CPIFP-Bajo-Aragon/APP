@@ -1,0 +1,307 @@
+/*------------------ ESTILO LOGIN-----------------*/
+
+#ventanaLogin{
+width:500px;
+height:325px; 
+}
+
+/* #corredorLogin{
+width:175px; 
+height:80px;
+} */
+
+/* #letrasLogin{
+width:250px;
+height:70px;
+} */
+
+/* h3{ 
+color:white;
+} */
+
+#bodyLogin{
+background-size:cover;
+background-repeat:no-repeat;
+background-position:center center;
+}
+
+.boton{
+background-color:#f46116;
+color:white;
+}
+
+
+/* -----------------MENU LATERAL ----------------- */
+
+#menu1{
+    width: 17% ; 
+    float:left;
+    height:100vh;
+    /*background-color:#4e83c9 */
+     /*background-color:#63a2e5*/
+     background-color: #0b2a85;
+}
+
+#home{   
+    border-bottom:solid white 3px;
+    background-color: #0b2a85;
+    /* padding-bottom:20px */
+}
+
+#imgHome{
+    margin-left:20px;
+    width:67px; 
+    height:67px;
+    margin-top:-30px
+}
+
+.tHome{
+    padding-left: 13px;
+    color:white;
+    font-size:35px;
+}
+
+.imgMenu{
+    margin-left: 33px;
+    width: 40px;
+    height: 40px;
+    margin-top:-10px;
+    margin-bottom:5px
+} 
+
+.tMenu{
+ padding-left: 20px;
+ color:white;
+ font-size: 20px;
+ font-family: 'Anton', sans-serif;
+ font-family: 'Doppio One', sans-serif;
+} 
+
+.tDes{
+    padding-left: 20px;
+    color:#0070c6;
+    font-size: 18px;
+    font-family: 'Anton', sans-serif;
+    font-family: 'Doppio One', sans-serif;
+} 
+
+
+.menu1 a:not(.home){
+    padding-top:15px;
+    border-bottom:#dfdada solid 2px;
+}
+
+
+#menu1 a:hover{
+    background-color: #f46116; 
+}
+
+
+
+/*----------------------------------------- ESTILO HEADER -------------------------------*/
+
+header{
+    height: 110px;
+    padding: 20px;
+}
+
+#textoHead{
+    font-family: 'Anton',sans-serif; 
+    color: #0b2a85;
+    font-size: 40px; 
+    letter-spacing: 7px; 
+    margin-left:100px;
+}
+
+#botonLogout{
+    background-color:#0b2a85;
+}
+
+#botonLogout a:hover{
+    background-color: #f46116; 
+}
+
+
+#botonLogout span{
+    font-size:20px;
+    color:white;
+}
+
+#botonLogout img{
+    width:25px;
+    height:25px;
+}
+
+
+/*------------------ ESTILOS TABLA -----------------*/
+
+article{
+    width:79%;
+    float:left
+}
+
+ #tabla{
+    margin:auto;
+    width: 70%;
+    margin-top:50px;
+} 
+
+/*ICONOS ACCIONES */
+.icono{
+    width:25px;
+    height:25px;
+    margin-left:10px
+}
+
+thead tr{
+    color:#0b2a85; 
+    font-size:18px;
+   /* text-align:center;*/
+} 
+
+ tr td{
+    color:#0b2a85; 
+    font-size:16px;
+  /*  text-align:center;*/
+} 
+
+
+
+/*------------------ ESTILOS VENTANAS MODALES -----------------*/
+
+.modal-title{
+    color:#0070c6;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.info label{
+    color:#0070c6;
+    font-weight: bold;
+    background-color:rgb(235, 245, 255);
+}
+
+.azul{
+    background-color:rgb(235, 245, 255);
+}
+
+.titulito{
+  text-align: left; 
+  font-size: 24px;
+  color: #0070c6; 
+  font-weight: bold;
+}
+
+.titulito span{
+    text-align: left; 
+    font-size: 17px;
+    color: #0070c6; 
+    font-weight: bold;
+  }
+
+/*------------------ ESTIO BOTON MODIFICACION DATOS -----------------*/
+
+.modDatos{
+  background-color: #0b2a85;
+  text-decoration:none; 
+}
+
+
+
+
+/*ESTILOS VENTANAS MODALES */
+
+
+/* label{
+   color:#023ef9;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+}
+
+.modalVer{  
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding: 100px 100px 0px 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modalBorrar{  
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding: 100px 100px 0px 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+}
+
+
+#headerVer h2{
+    padding: 30px;
+    color:#023ef9;
+} */
+
+
+
+/* BOTONES */
+#confirmar{
+    background-color: #0070c6; 
+    color:white;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+#anadir{
+    background-color: #0070c6; 
+    color:white;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+#borrar{
+    background-color: #0b2a85; 
+    color:white;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+#botonVolver{
+    background-color:white; 
+    color:#0070c6;
+    border-color:#0070c6;
+    border: solid 2px;
+    letter-spacing:1px;
+    font-weight: bold;
+}
+
+
+
+
+
+label,h2{
+    color:#023ef9;
+}
+
+#ventana{
+    margin: auto;
+}
+
+
+
+
+
+
