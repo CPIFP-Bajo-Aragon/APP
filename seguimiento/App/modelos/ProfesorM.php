@@ -46,8 +46,6 @@ class ProfesorM{
 
    //***************************** DIARIO ********************************/
    
-<<<<<<< HEAD
-=======
      
    /**
     * Calcula las horas impartidas de un módulo a una fecha.
@@ -123,7 +121,6 @@ class ProfesorM{
        return $horas_impartidas / $horas_lectivas_a_fecha * 100;
     }
  
->>>>>>> rolles
 
 
    public function horas_impartidas($id_modulo){

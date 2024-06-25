@@ -65,16 +65,10 @@ class ProfeSegui extends Controlador{
         $this->datos['temas']=$this->profeModelo->temas_del_modulo($id_modulo);
         $this->datos['horario_semana']=$this->profeModelo->horario_semana($id_modulo);
         $this->datos['horas_impartidas']=$this->profeModelo->horas_impartidas($id_modulo);
-<<<<<<< HEAD
-
-=======
->>>>>>> rolles
         $this->vista('profesores/diario',$this->datos);
 
     }
 
-<<<<<<< HEAD
-=======
 
 
     /**
@@ -108,7 +102,6 @@ class ProfeSegui extends Controlador{
 
     }
 
->>>>>>> rolles
     public function segui_dia(){  
         
         $id_profe=$this->datos['usuarioSesion']->id_profesor;
