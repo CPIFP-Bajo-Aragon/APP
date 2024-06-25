@@ -411,6 +411,21 @@ public function borrar_segui_tema($id_modulo,$tema,$fecha){
  
 }
 
+public function borrar_segui_completo($id_modulo){
+   $this->db->query("DELETE FROM segui_profesor_tema where id_modulo=:modulo;");
+   $this->db->bind(':modulo',$id_modulo);
+
+
+   if ($this->db->execute()){
+     return true;
+ }else{
+     return false;
+ }
+
+
+}
+
+
 
 
   
@@ -422,7 +437,7 @@ public function borrar_segui_tema($id_modulo,$tema,$fecha){
 
 
 public function temas_del_modulo($id_modulo){
-   $this->db->query("SELECT * FROM segui_tema where id_modulo=:id_modulo");
+   $this->db->query("SELECT * FROM segui_tema where id_modulo=:id_modulo ORDER BY tema");
    $this->db->bind(':id_modulo',$id_modulo);
    return $this->db->registros();
 }
@@ -468,10 +483,11 @@ public function nuevo_tema($nuevo){
 
    public function editar_tema($tema){
 
-      $this->db->query("UPDATE segui_tema SET descripcion=:descripcion,total_horas=:total_horas 
+      $this->db->query("UPDATE segui_tema SET tema=:tema, descripcion=:descripcion,total_horas=:total_horas 
                                             where id_modulo=:id_modulo and id_tema=:id_tema");
+      $this->db->bind(":tema",$tema['tema']);
       $this->db->bind(":id_modulo",$tema['id_modulo']);
-      $this->db->bind(":id_tema", $tema['tema']);
+      $this->db->bind(":id_tema", $tema['id_tema']);
       $this->db->bind(":descripcion",$tema['descripcion']);
       $this->db->bind(":total_horas",$tema['horas_tema']);
   

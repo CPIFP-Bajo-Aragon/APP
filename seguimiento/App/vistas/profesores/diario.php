@@ -641,7 +641,7 @@
               <div class="modal-footer">
                 <input type="hidden" name="fecha" id="fecha" value="<?php echo $_GET['fecha'] ?>">
                 <input type="hidden" name="id_modulo" id="id_modulo" value="<?php echo $datos['datos_modulo'][0]->id_modulo ?>" >
-                <input type="submit" style="font-weight:bold" class="btn btn-primary text-white mb-3 mt-3 me-3" data-bs-dismiss="modal" value="Guardar">
+                <input type="submit" style="font-weight:bold" class="btn btn-primary text-white mb-3 mt-3 me-3" data-bs-dismiss="modal" value="Guardar*">
               </div>
 
           </form>

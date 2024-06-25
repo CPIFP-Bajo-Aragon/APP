@@ -29,3 +29,13 @@ function obtenerRol($roles){
 
     return $id_rol;
 }
+
+/**funcion que calcula el día siguiente al día dado */
+function diaSiguiente($diaActual)
+{
+     // INCREMENTAMOS EN UNO EL DÍA ACTUAL 
+     $fecha_sig=explode('-',$diaActual);
+     $dia_sig= mktime(0, 0, 0, $fecha_sig[1] , $fecha_sig[2]+1, $fecha_sig[0]);
+     $dia_siguiente = date ("Y-m-j",$dia_sig);
+     return $dia_siguiente;
+}
