@@ -46,6 +46,84 @@ class ProfesorM{
 
    //***************************** DIARIO ********************************/
    
+<<<<<<< HEAD
+=======
+     
+   /**
+    * Calcula las horas impartidas de un módulo a una fecha.
+    * (R.Olles 21-06-2024)
+    *
+    * @ param string $fecha  Fecha a la que calcular las horas impartidas.
+    * @ param integer $id_modulo id del módulo sobre que que calcular las horas impartidas.
+    * @ return integer horas impartidas
+    */
+    public function horas_impartidas_a_fecha($fecha, $id_modulo)
+    {
+
+      // Consulta. 
+      //   De devuelve las horas impartidas para un id_modulo y hasta una fecha dada
+      //   Comprueba que la fecha esté dentro del año académico
+      //   Comprueba que las horas impartidas por tema no sea mayor que las programadas. Si es mayor se elige las horas programadas.
+       $consulta = "
+          SELECT SUM(Total_H_Impart) AS horas
+             FROM(
+             SELECT 
+                md.id_modulo, 
+                tm.tema,
+                tm.total_horas AS Total_H_Progr,
+                IF (SUM(sg_tm.horas_dia) > tm.total_horas, tm.total_horas, SUM(sg_tm.horas_dia)) AS Total_H_Impart
+ 
+                FROM cpifp_modulo md  
+                   JOIN segui_tema tm ON md.id_modulo = tm.id_modulo
+                   JOIN segui_profesor_tema sg_tm ON tm.id_tema = sg_tm.id_tema
+                
+                WHERE
+                   md.id_modulo = :id_modulo 
+                   AND sg_tm.fecha < :fecha
+                   AND (
+                      IF ( MONTH (:fecha) >= 9,
+                         sg_tm.fecha > DATE_FORMAT(:fecha, '%Y-09-01'),
+                         sg_tm.fecha > DATE_FORMAT(DATE_SUB(:fecha, INTERVAL 1 YEAR), '%Y-09-01')
+                         )
+                      )
+                      
+                GROUP BY 
+                   md.id_modulo, 
+                   tm.tema, 
+                   tm.total_horas
+                   
+             ) AS subconsulta
+                GROUP BY 
+                   subconsulta.id_modulo;
+          ";
+ 
+       $this->db->query($consulta);
+ 
+       $this->db->bind(':fecha', $fecha);
+       $this->db->bind(':id_modulo', $id_modulo);
+
+       return $this->db->registros()[0]->horas;
+    }
+ 
+    /**
+     * Calculo del EP1 de un módulo a una fecha
+     *    EP1 = Horas Impartidas / Horas Lectivas
+     * (R.Olles 21-06-2024)
+     *
+     * @ param string $fecha  Fecha a la que calcular ep1
+     * @ param integer $id_modulo id del módulo sobre que que calcular ep1
+     * @ return integer horas impartidas
+     */
+    public function ep1 ($fecha, $id_modulo)
+    {
+       // Ha modificar HORAS LECTIVAS A FECHA con función que calcule las horas lectivas a fecha
+       $horas_lectivas_a_fecha = 14;
+
+       $horas_impartidas = $this->horas_impartidas_a_fecha($fecha, $id_modulo);
+       return $horas_impartidas / $horas_lectivas_a_fecha * 100;
+    }
+ 
+>>>>>>> rolles
 
 
    public function horas_impartidas($id_modulo){

@@ -65,11 +65,50 @@ class ProfeSegui extends Controlador{
         $this->datos['temas']=$this->profeModelo->temas_del_modulo($id_modulo);
         $this->datos['horario_semana']=$this->profeModelo->horario_semana($id_modulo);
         $this->datos['horas_impartidas']=$this->profeModelo->horas_impartidas($id_modulo);
+<<<<<<< HEAD
 
+=======
+>>>>>>> rolles
         $this->vista('profesores/diario',$this->datos);
 
     }
 
+<<<<<<< HEAD
+=======
+
+
+    /**
+     * Carga la información en el array datos y los pasa a la vista profesores/informes2
+     * (21-06-2024)
+     * 
+     * @param integer id_modulo id del módulo a mostrar el informe
+     */
+    public function informes($id_modulo){
+
+        $this->datos['lectivo']=$this->profeModelo->obtener_lectivo();
+        $id_lectivo=$this->datos['lectivo'][0]->id_lectivo;
+        $this->datos['evaluacion']=$this->profeModelo->obtener_evaluaciones($id_lectivo);
+        $this->datos['datos_modulo']=$this->profeModelo->datos_modulo($id_modulo,$id_lectivo);
+        
+        $this->datos['segui_temas']=$this->profeModelo->obtener_segui_temas($id_modulo);
+        $this->datos['festivos']=$this->profeModelo->ver_festivos($id_lectivo);  
+        $this->datos['temas']=$this->profeModelo->temas_del_modulo($id_modulo);
+        $this->datos['horario_semana']=$this->profeModelo->horario_semana($id_modulo);
+        $this->datos['horas_impartidas']=$this->profeModelo->horas_impartidas($id_modulo);
+
+        // (R.Olles 21-06-2024) incluye en datos las horas impartidas que se condieran en el ep1
+        $this->datos['horas_impartidas_ep1']=$this->profeModelo->horas_impartidas_a_fecha(date('Y-m-d'), $id_modulo);
+
+        // (R.Olles 21-06-2024) Incluye en datos ep1(Fecha hoy, id_modulo)
+        $this->datos['ep1'] = $this->profeModelo->ep1(date('Y-m-d'), $id_modulo);
+
+        // Carga la viasta *** infomres2 ****
+        //      A REVISAR. Sigue con vista informe2 o camnbia a informe
+        $this->vista('profesores/informes2',$this->datos);
+
+    }
+
+>>>>>>> rolles
     public function segui_dia(){  
         
         $id_profe=$this->datos['usuarioSesion']->id_profesor;

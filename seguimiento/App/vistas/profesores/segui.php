@@ -17,7 +17,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Doppio+One&display=swap" rel="stylesheet">
+<<<<<<< HEAD
     <title>Seguimiento</title>
+=======
+    <title>Login</title>
+>>>>>>> rolles
 
 
   <!-- <link rel="stylesheet" href="<?php echo RUTA_URL ?>/public/css/estilos.css"> -->
@@ -46,6 +50,7 @@
     }
 </style>
 
+<<<<<<< HEAD
 </head>
 
 <body>
@@ -65,12 +70,44 @@
       </a>
     </div>
   </nav>  
+=======
+
+
+
+
+
+</head>
+
+
+    
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e9e9e9">
+      <div class="container-fluid">
+          <a href="<?php echo RUTA_CPIFP?>/inicio" class="nav-link"> 
+              <img src="<?php echo RUTA_Icon?>logo_cpifp.png" style="width:230px;" class="mt-2 mb-2"> 
+          </a> 
+          <ul class="navbar-nav ms-auto me-4 mb-2 mb-md-0">
+                <li class="navbar-text">
+                    <?php echo $datos['usuarioSesion']->login ?>
+                </li>
+            </ul>
+          <a type="button" id="botonLogout" class="btn" href="<?php echo RUTA_LOGOUT?>">
+              <span>Logout</span>
+              <img class="ms-2" src="<?php echo RUTA_Icon ?>logout.png">
+          </a>
+      </div>
+    </nav>  
+>>>>>>> rolles
 
 
 
     
+<<<<<<< HEAD
     <div class="container mt-5 mb-5">
       <div class="card d-flex justify-content-center align-items-center" style="background-color:#e9e9e9; border:solid 3px #0b2a85; border-radius:15px; margin-top:50px; margin:auto">
+=======
+    <div class="container-fluid mt-5 mb-5">
+      <div class="card d-flex justify-content-center align-items-center" style="background-color:#e9e9e9; border:solid 3px #0b2a85; width:70%; height:150px; border-radius:15px; margin-top:50px; margin:auto">
+>>>>>>> rolles
         <div class="card-body">
         <h5 class="card-title mt-2 mb-4 text-center" style="color:#0b2a85">SEGUIMIENTO DE LA PROGRAMACION</h5>
           <?php foreach($datos['modulo'] as $mod):?>
@@ -84,6 +121,7 @@
 
 
     <?php if ($datos['usuarioSesion']->id_rol == 30) {?>
+<<<<<<< HEAD
       <div class="card d-flex justify-content-center align-items-center me-5" style="background-color:#e9e9e9; border:solid 3px #0b2a85; width:300px; height:150px; border-radius:15px; margin:auto">
         <div class="card-body">
           <h5 class="card-title mt-2 mb-4 text-center" style="color:#0b2a85">REPARTO DE HORAS</h5>
@@ -97,6 +135,24 @@
 
     <div class="container-fluid">
       <div class="row">   
+=======
+            <div class="card d-flex justify-content-center align-items-center me-5" style="background-color:#e9e9e9; border:solid 3px #0b2a85; width:300px; height:150px; border-radius:15px; margin:auto">
+                <div class="card-body">
+                  <h5 class="card-title mt-2 mb-4 text-center" style="color:#0b2a85">REPARTO DE HORAS</h5>
+                  <a style="text-decoration:none; color:black;" href="<?php echo RUTA_REPARTO?>">
+                    <button type="button" class="boton text-white mb-3">Reparto</button>
+                  </a> 
+                </div>
+              </div>
+          <?php }?>
+
+
+    <div class="container-fluid">
+      <div class="row">
+
+          
+          
+>>>>>>> rolles
           <?php if ($datos['usuarioSesion']->id_rol == 50) {?>
             <div class="card d-flex justify-content-center align-items-center" style="background-color:#e9e9e9; border:solid 3px #0b2a85; width:300px; height:150px; border-radius:15px; margin:auto">
               <div class="card-body">
@@ -111,6 +167,7 @@
       </div>      
     </div>
 
+<<<<<<< HEAD
     <!-- Contenedor seguimiento -->
     <section class="container mt-5">
       <div class="row">   
@@ -350,3 +407,5 @@
 </body>
 </html>
     
+=======
+>>>>>>> rolles
