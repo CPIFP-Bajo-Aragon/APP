@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,10 +19,7 @@
     <title>Login</title>
 </head>
 
-
-
-
-
+<body>
 <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e9e9e9">
     <div class="container-fluid">
         <a href="<?php echo RUTA_CPIFP?>/inicio" class="nav-link"> 
@@ -42,7 +36,7 @@
             <img class="ms-2" src="<?php echo RUTA_Icon ?>logout.png">
         </a>
     </div>
-    </nav>  
+</nav>  
                
 
 
@@ -517,4 +511,10 @@
     }
 
 
-</script>
+</script> 
+</body>
+</html>
+
+
+
+
