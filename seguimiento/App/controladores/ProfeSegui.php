@@ -24,6 +24,7 @@ class ProfeSegui extends Controlador{
 
         //obtiene el id del año lectivo
         $this->datos['lectivo']=$this->profeModelo->obtener_lectivo();
+       
         $id_lectivo=$this->datos['lectivo'][0]->id_lectivo;
         $this->datos['evaluacion']=$this->profeModelo->obtener_evaluaciones($id_lectivo);
 
@@ -457,5 +458,268 @@ class ProfeSegui extends Controlador{
     }
 
 
+
+
+   
+   
+    /**
+     * FUNCIÓN QUE CALCULA LAS HORAS LECTIVAS DE UN MÓDULO HASTA UNA FECHA DADA
+     */
+   /* public function horasHastaFecha($fechaObjetivo, $id_modulo)
+    {
+
+        //OBTENEMOS EL AÑO LECTIVO
+        $lectivo=$this->profeModelo->obtener_lectivo();
+        $id_lectivo=$lectivo[0]->id_lectivo;
+        $curso=$lectivo[0]->nombre;
+        $fecha_ini=$lectivo[0]->fecha_ini;
+        $fecha_fin=$lectivo[0]->fecha_fin;
+
+        //OBTENER LOS DÍAS FESTIVOS
+        $festivos=$this->profeModelo->ver_festivos($id_lectivo);
+        
+        $diaActual=$fecha_ini;
+        $i =0;
+     
+        $horario_semana=$this->profeModelo->horario_semana($id_modulo);
+        //CALCULAMOS LOS DIAS RESTANTES DESDE EL PRINCIPO DE CURSO HASTA LA FECHA OBJETIVO
+
+        $horasTotales=0;
+        while($diaActual<=$fechaObjetivo)
+            {
+
+               $diaLectivo=true;
+                ///BUSCAMOS SI EL DÍA ACTUAL ESTÁ ENTRE LOS FESTIVOS DEL AÑO SI ES FESTIVO $diaLectivo pasará a false
+                foreach ($festivos as $diaFestivo)
+                {
+                    if($diaFestivo->fecha==$diaActual) {$diaLectivo=false; }
+
+                }
+
+                 //obtenemos el dia de la semandel dia actual 
+                $diaSemana=date("N",strtotime($diaActual));
+                if($diaSemana>5) $diaLectivo=false;
+
+                if($diaLectivo)
+                {           
+                      
+                        $horasDiarias=0;
+                        foreach($horario_semana as $horariodia)
+                        {
+                            if ($horariodia->id_horario==$diaSemana)
+                                $horasDiarias=$horariodia->total_horas;
+                        }
+                        $horasTotales=$horasTotales+$horasDiarias;
+                
+                }
+            $diaActual=diaSiguiente($diaActual);
+          }
+            
+            echo "Las horas totales del módulo $id_modulo, hasta la fecha $fechaObjetivo son $horasTotales";
+            exit();
+            //return $horasTotales;
+
+
+    }
+*/
+
+    public function prueba()
+    {
+
+        $horas=Indicador::horasHastaFecha('2024-02-12',17);
+        echo $horas;
+        exit();
+    }
+
+    public function rellenoAutomatico($id_modulo)
+    {
+        
+        
+        //BORRAMOS EL SEGUIMIENTO DE LA PROGRAMACIÓN DEL MÓDULO CORRESPONDIENTE
+            if( $this->profeModelo->borrar_segui_completo($id_modulo))  echo "BORRADO CON EXITO";
+        
+       //OBTENEMOS EL AÑO LECTIVO
+        $lectivo=$this->profeModelo->obtener_lectivo();
+        $id_lectivo=$lectivo[0]->id_lectivo;
+        $curso=$lectivo[0]->nombre;
+        $fecha_ini=$lectivo[0]->fecha_ini;
+        $fecha_fin=$lectivo[0]->fecha_fin;
+
+        //OBTENER UN STRING CON LOS DÍAS FESTIVOS
+        $festivos=$this->profeModelo->ver_festivos($id_lectivo);
+        //$cursoContinua=true;
+        $diaActual=$fecha_ini;
+        $i =0;
+     
+        $horario_semana=$this->profeModelo->horario_semana($id_modulo);
+        
+        //CREAMOS UNA TABLA CON LOS TEMAS QUE DA CADAD MÓDULOULO, LAS HORAS PREVISTAS Y LAS HORAS YA ASIGNADAS
+        $temas=$this->profeModelo->temas_del_modulo($id_modulo);
+        //print_r($unidades);
+        //$horasExamenes=$unidades;
+       
+        $i=0;
+        foreach($temas as $tema)
+        {
+            $unidades [$i] ['id_tema']= $tema->id_tema;
+            $unidades [$i]['tema']=$tema->tema;
+            $unidades [$i]['descripcion']=$tema->descripcion;
+            $unidades [$i]['horasPrevistas']=$tema->total_horas;
+            $unidades [$i]['horasHorasImpartidas']=0;
+            $i++;
+            
+        }
+
+    
+        //CALCULAMOS LOS DÍAS PARARA FINAL DE CURSO
+        $diasRestantes=round(abs((strtotime($diaActual)-strtotime($fecha_fin))/ 86400),0);
+
+        while($diaActual<=$fecha_fin)
+            {
+
+               $diaLectivo=true;
+                ///BUSCAMOS SI EL DÍA ACTUAL ESTÁ ENTRE LOS FESTIVOS DEL AÑO SI ES FESTIVO $diaLectivo pasará a false
+                foreach ($festivos as $diaFestivo)
+                {
+                    if($diaFestivo->fecha==$diaActual) {$diaLectivo=false; }
+
+                }
+
+                //obtenemos el dia de la semandel dia actual 
+                $diaSemana=date("N",strtotime($diaActual));
+                
+                if($diaSemana>5) $diaLectivo=false;
+               
+                if($diaLectivo)
+                {           
+                      
+                        $horasDiarias=0;
+                        foreach($horario_semana as $horariodia)
+                        {
+                            if ($horariodia->id_horario==$diaSemana)
+                                $horasDiarias=$horariodia->total_horas;
+                        }
+                    
+                    
+                    echo $diaActual."<br>";
+                    //echo "<br>".$diaActual ."($horasDiarias)--".date("N",strtotime($diaActual));   
+                    /** AÑADIMOS EN EL DIA ACTUAL LAS HORAS CORREPONDIENTES
+                     * PARA ELLO RECORREMOS LA TABLA TEMAS Y BUSCAMOS EL PRIMER TEMA QUE NO SEA EXAMEN EN EL QUE
+                     * LAS HORAS IMPARTIDAS SEAN MENORES QUE LAS HORAS PREVISTAS.
+                     * 
+                     * SI HORASPREVISTAS-HORASIMPARTIDAS > HORAS DIARIAS INSERTAMOS LA TOTALIDAD DE LAS HORAS DIARIAS
+                     * EN OTRO CASO INSERTAMOS SÓLO HORASPREVISTAS-HORASIMPARTIDAS EN EL TEMA ACTUAL E INICIAMOS EL SIGUIENTE TEMA 
+                     * CON LA CANTIDAD HORASDIARIAS-(HORASPREVISTAS-HORASIMPARTIDAS)
+                     * 
+                     * 
+                     * Insertaremos con la función del modelo                  public function segui_dia($seg_dia,$array){
+                     * */ 
+                    
+                     
+                     $id_profe=$this->datos['usuarioSesion']->id_profesor;
+                    
+                    // echo "<br><br>";
+                     /**SELECCIONAMOS EL TEMA QUE HAY QUE INSERTAR */
+
+                     foreach($unidades as $clave => $unidad)
+                     {
+                          $tam=0;  
+                          if($unidad['tema']!=0) /**NO SON EXÁMENES */
+                          {
+                            /**Aún quedan horas por dar de tema que estamos mirando*/
+                            if($unidad['horasPrevistas']>$unidad['horasHorasImpartidas'])
+                            {
+
+                                    /**CABEN TODAS LAS HORAS DEL DÍA EN UNA ÚNICA UNIDAD */
+                                  
+                                            $tam++;
+                                            $plan="Tema (".$unidad['tema'].") ".$unidad['descripcion']; 
+                                            $act="Tema (".$unidad['tema'].") ".$unidad['descripcion']; 
+                                            $observaciones="";
+                                            
+                                            echo "vamos a insertar del tema ".$unidad['tema']."    Horas impartidas: ".$unidad['horasHorasImpartidas']." Horas previstas : ".$unidad['horasPrevistas']."<br>";
+                                            
+                                            $seg_dia =[
+                                                'id_profe'=>$id_profe,
+                                                'plan'=>$plan,
+                                                'act'=>$act,
+                                                'observaciones'=>$observaciones,
+                                                'fecha'=>$diaActual,
+                                                'id_modulo'=>$id_modulo
+                                            ];
+                                            //print_r($seg_dia);
+                                            
+                                            // MONTO LOS OBJETOS
+                                                $array=array();
+                                                //$tam=sizeof($_POST['temas']);
+                                                for($i=0;$i<$tam;$i++){
+                                                    $obj=(object) [
+                                                        'tema' => $unidad['id_tema'],
+                                                        'horas' => $horasDiarias
+                                                    ];
+                                                    array_push($array,$obj);
+                                                };
+
+                                                // LIMPIO VACIOS Y AÑADO EN $nuevo
+                                                $nuevo= array();
+                                                for($i=0;$i<$tam;$i++){
+                                                    if($array[$i]->horas!='')
+                                                    array_push($nuevo,$array[$i]);
+                                                }
+                                                $unidades[$clave]['horasHorasImpartidas'] += $horasDiarias;
+                                          
+                                                print_r($nuevo);
+
+
+
+
+                                        $this->profeModelo->segui_dia($seg_dia,$nuevo);
+                                            
+                                        break;  
+                                            
+                                       
+                            
+                                
+
+                            
+                            }
+                          }
+                     }
+                   
+
+                    
+                    
+                  
+
+
+                    
+                   
+                }
+               
+                // INCREMENTAMOS EN UNO EL DÍA ACTUAL 
+                /*$fecha_sig=explode('-',$diaActual);
+                $dia_sig= mktime(0, 0, 0, $fecha_sig[1] , $fecha_sig[2]+1, $fecha_sig[0]);
+                $dia_siguiente = date ("Y-m-j",$dia_sig);
+                $diaActual=$dia_siguiente;
+                */
+                $diaActual=diaSiguiente($diaActual);
+                
+                
+            }
+
+       
+ 
+        exit();
+        
+
+         //OBTENER LOS DÍAS PREVISTOS PARA EXAMEN
+
+
+        //OBTENER LISTADO DE LOS TEMAS CON SUS HORAS PREVISTAS Y LAS HORAS IMPARTIDAS
+        
+
+        //HACER UN BUCLE DESDE EL PRIMER DÍA HASTA EL ÚLTIMO
+
+    }
 
 }

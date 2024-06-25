@@ -336,6 +336,21 @@ public function borrar_segui_tema($id_modulo,$tema,$fecha){
  
 }
 
+public function borrar_segui_completo($id_modulo){
+   $this->db->query("DELETE FROM segui_profesor_tema where id_modulo=:modulo;");
+   $this->db->bind(':modulo',$id_modulo);
+
+
+   if ($this->db->execute()){
+     return true;
+ }else{
+     return false;
+ }
+
+
+}
+
+
 
 
   
