@@ -14,7 +14,7 @@ class Indicador
        return new $modelo;
     }
 
-    
+
 
     public static function horasHastaFecha($fechaObjetivo, $id_modulo)
     {
@@ -32,14 +32,15 @@ class Indicador
      
        $diaActual=$fecha_ini;
        $i =0;
-     
+
        $horario_semana=$profeModelo->horario_semana($id_modulo);
        //CALCULAMOS LOS DIAS RESTANTES DESDE EL PRINCIPO DE CURSO HASTA LA FECHA OBJETIVO
       
        $horasTotales=0;
-       
-       while($diaActual<=$fechaObjetivo)
+ 
+       while(date($diaActual)<=date($fechaObjetivo))
        {
+
           $diaLectivo=true;
           ///BUSCAMOS SI EL DÍA ACTUAL ESTÁ ENTRE LOS FESTIVOS DEL AÑO SI ES FESTIVO $diaLectivo pasará a false
           foreach ($festivos as $diaFestivo)
@@ -64,7 +65,14 @@ class Indicador
             $horasTotales=$horasTotales+$horasDiarias;
                 
            }
-        $diaActual=diaSiguiente($diaActual);
+
+
+         // $diaActual=diaSiguiente($diaActual);
+         $fecha_sig=explode('-',$diaActual);
+         $dia_sig= mktime(0, 0, 0, $fecha_sig[1] , $fecha_sig[2]+1, $fecha_sig[0]);
+         $dia_siguiente = date ("Y-m-j",$dia_sig);
+         $diaActual=$dia_siguiente;
+
         }
             
         return $horasTotales;

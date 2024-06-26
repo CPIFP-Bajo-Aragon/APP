@@ -114,10 +114,9 @@ class ProfesorM{
      */
     public function ep1 ($fecha, $id_modulo)
     {
-       // Ha modificar HORAS LECTIVAS A FECHA con función que calcule las horas lectivas a fecha
-       $horas_lectivas_a_fecha = 14;
-
+       $horas_lectivas_a_fecha = Indicador::horasHastaFecha( $fecha, $id_modulo ); 
        $horas_impartidas = $this->horas_impartidas_a_fecha($fecha, $id_modulo);
+       
        return $horas_impartidas / $horas_lectivas_a_fecha * 100;
     }
  
