@@ -88,8 +88,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
     <body>
 
-        <div class="menu nav nav-tabs"role="tablist">
-            <a class="active" href="<?php echo RUTA_SEGUIMIENTO?>">INICIO</a> 
+        <div class="menu nav nav-tabs" role="tablist">
+            <a class="active" href="<?php echo RUTA_SEGUIMIENTO?>">Volver atrás</a> 
             <?php foreach($datos['grados'] as $grados):?>
                 <a class="" id="<?php echo $grados->id_ciclo?>" data-bs-toggle="tab" href="#<?php echo $grados->ciclo_corto?>"><span><?php echo $grados->ciclo.' - '?><?php echo $grados->ciclo_corto?></span></a>
             <?php endforeach ?>

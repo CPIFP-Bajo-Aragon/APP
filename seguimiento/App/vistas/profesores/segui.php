@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,28 +72,30 @@
     
     <div class="container mt-5 mb-5">
       <div class="card d-flex justify-content-center align-items-center" style="background-color:#e9e9e9; border:solid 3px #0b2a85; border-radius:15px; margin-top:50px; margin:auto">
-        <div class="card-body">
+        <div class="card-body text-center">
         <h5 class="card-title mt-2 mb-4 text-center" style="color:#0b2a85">SEGUIMIENTO DE LA PROGRAMACION</h5>
           <?php foreach($datos['modulo'] as $mod):?>
               <a style="text-decoration:none; color:black;" href="<?php echo RUTA_URL ?>/profeSegui/diario/<?php echo $mod->id_modulo?>">
-                <button type="button" class="boton text-white me-2 mb-3"><?php echo $mod->modulo?></button>
+                <button type="button" class="boton text-white mb-3"><?php echo $mod->modulo?></button>
               </a> 
           <?php endforeach ?>
         </div>
       </div>
     </div>
 
-
-    <?php if ($datos['usuarioSesion']->id_rol == 30) {?>
-      <div class="card d-flex justify-content-center align-items-center me-5" style="background-color:#e9e9e9; border:solid 3px #0b2a85; width:300px; height:150px; border-radius:15px; margin:auto">
-        <div class="card-body">
-          <h5 class="card-title mt-2 mb-4 text-center" style="color:#0b2a85">REPARTO DE HORAS</h5>
-          <a style="text-decoration:none; color:black;" href="<?php echo RUTA_REPARTO?>">
-            <button type="button" class="boton text-white mb-3">Reparto</button>
-          </a> 
+    <div class="container mt-5 mb-5">
+      <?php if ($datos['usuarioSesion']->id_rol == 30) {?>
+        <div class="card d-flex justify-content-center align-items-center" style="background-color:#e9e9e9; border:solid 3px #0b2a85; height:150px; border-radius:15px">
+          <div class="card-body text-center">
+            <h5 class="card-title mt-2 mb-4 text-center" style="color:#0b2a85">REPARTO DE HORAS</h5>
+            <a style="text-decoration:none; color:black;" href="<?php echo RUTA_REPARTO?>">
+                <button type="button" class="boton text-white mb-3">Reparto</button>
+            </a> 
+          </div>
         </div>
-      </div>
-    <?php }?>
+      <?php }?>
+    </div>
+    
 
 
     <div class="container-fluid">
