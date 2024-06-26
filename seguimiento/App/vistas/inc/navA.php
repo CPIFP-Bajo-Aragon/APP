@@ -140,12 +140,8 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <a href="<?php echo RUTA_URL ?>/informes/<?php echo $datos['datos_modulo'][0]->id_modulo?>" class="nav-link">                           
-=======
             <!-- (R.Olles 24-06-2024) Cambio de enlace de "/informes/" a /profeSegui/informes/" -->
             <a href="<?php echo RUTA_URL ?>/profeSegui/informes/<?php echo $datos['datos_modulo'][0]->id_modulo?>" class="nav-link">                           
->>>>>>> rolles
                 <span class="tMenu">Informes</span>                                                          
             </a>
 
