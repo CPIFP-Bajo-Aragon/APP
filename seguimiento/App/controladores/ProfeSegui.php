@@ -1,6 +1,5 @@
 <?php
 
-
 class ProfeSegui extends Controlador{
 
     private $profeModelo;
@@ -92,14 +91,14 @@ class ProfeSegui extends Controlador{
         $this->datos['horas_impartidas']=$this->profeModelo->horas_impartidas($id_modulo);
 
         // (R.Olles 21-06-2024) incluye en datos las horas impartidas que se condieran en el ep1
-        $this->datos['horas_impartidas_ep1']=$this->profeModelo->horas_impartidas_a_fecha(date('Y-m-d'), $id_modulo);
+        $horas_impartidas_ep1 = $this->profeModelo->horas_impartidas_a_fecha(date('Y-m-d'), $id_modulo);
+        $this->datos['horas_impartidas_ep1'] = $horas_impartidas_ep1;
 
         // (R.Olles 21-06-2024) Incluye en datos ep1(Fecha hoy, id_modulo)
-        $this->datos['ep1'] = $this->profeModelo->ep1(date('Y-m-d'), $id_modulo);
+        $ep1 = $this->profeModelo->ep1(date('Y-m-d'), $id_modulo);
+        $this->datos['ep1'] = $ep1;
 
-        // Carga la viasta *** infomres2 ****
-        //      A REVISAR. Sigue con vista informe2 o camnbia a informe
-        $this->vista('profesores/informes2',$this->datos);
+        $this->vista('profesores/informes',$this->datos);
 
     }
 
@@ -558,7 +557,7 @@ class ProfeSegui extends Controlador{
     public function prueba()
     {
 
-        $horas=Indicador::horasHastaFecha('2024-02-12',17);
+        $horas=Indicador::horasHastaFecha('2024-02-12',22);
         echo $horas;
         exit();
     }
