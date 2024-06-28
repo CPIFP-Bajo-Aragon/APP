@@ -72,7 +72,7 @@ class ProfeSegui extends Controlador{
 
 
     /**
-     * Carga la información en el array datos y los pasa a la vista profesores/informes2
+     * Carga la información en el array datos y los pasa a la vista profesores/informes
      * (21-06-2024)
      * 
      * @param integer id_modulo id del módulo a mostrar el informe
@@ -98,8 +98,50 @@ class ProfeSegui extends Controlador{
         $ep1 = $this->profeModelo->ep1(date('Y-m-d'), $id_modulo);
         $this->datos['ep1'] = $ep1;
 
-        $this->vista('profesores/informes',$this->datos);
 
+        // (R.Olles 28-06-2024) ¡¡¡¡ CUIDADO - REVISIÓN !!!!!
+        //     Por controlar el día de fin de docencia del módulo.
+        //      Revisión en Indicador horasHastaFecha() 
+        //      ¿Qué pasa si hace calculos de ep1 a final de junio
+            
+        // (R.Olles 28-06-2024) ¡¡¡¡ CUIDADO - REVISIÓN !!!!!
+        //     Los ep1s a final del mes se calculan a 01 del mes siguiente.
+        //     Revisar en Indicador horasHastaFecha() si
+        //     while(date($diaActual)   <=  date($fechaObjetivo))
+        //     while(date($diaActual)   <   date($fechaObjetivo))
+
+
+        // (R.Olles 28-06-2024) Incluye en datos ep1s de todos los meses del año escolar
+
+        // Configura el formato de fecha
+        setlocale(LC_TIME, 'es_ES.UTF-8', 'esp');
+
+        // Calcula el 1 de octubre de año escolar en curso
+        //     ep1 de septiembre se calcula a fecha Año-10-01
+        $fecha_ep1_mes = new DateTime('2000-10-01');
+        $fecha_actual = new DateTime(date('Y-m-d'));
+
+        if (date('m') >= 9) {
+            $fecha_ep1_mes->setDate($fecha_actual->format('Y'), 10, 1 );
+        } else {
+            $fecha_ep1_mes->setDate($fecha_actual->format('Y')-1, 10, 1 );
+        }
+
+        // Calcula los ep1 desde septiembre hasta junio
+        $ep1s = [];
+        for ($i = 0; $i < 10; $i++) {
+            // Inserta en diccionario [mes]=>ep1 hasta final mes
+            $mes = strftime('%b', $fecha_ep1_mes->getTimestamp() - 1);
+            $ep1 = $this->profeModelo->ep1($fecha_ep1_mes->format('Y-m-d'), $id_modulo);
+            $ep1s[$mes] = $ep1;
+
+            // Pasa al mes siguiente
+            $fecha_ep1_mes->modify('+ 1 month');
+        }
+
+        $this->datos['ep1s'] = $ep1s;
+
+        $this->vista('profesores/informes',$this->datos);
     }
 
     public function segui_dia(){  

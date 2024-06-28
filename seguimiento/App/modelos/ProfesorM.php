@@ -110,7 +110,7 @@ class ProfesorM{
      *
      * @ param string $fecha  Fecha a la que calcular ep1
      * @ param integer $id_modulo id del módulo sobre que que calcular ep1
-     * @ return integer horas impartidas
+     * @ return double horas impartidas
      */
     public function ep1 ($fecha, $id_modulo)
     {
